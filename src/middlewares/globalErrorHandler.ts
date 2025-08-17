@@ -5,7 +5,6 @@ import { AppError } from "../utils/appError";
 
 // Global error handler middleware
 const globalErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
-  // Check the environment
   const isDevelopment = config.node_environment === "development";
 
   // Handle operational errors (custom AppError)

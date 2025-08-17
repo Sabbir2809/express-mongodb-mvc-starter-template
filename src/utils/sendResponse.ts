@@ -1,22 +1,8 @@
 import { Response } from "express";
+import { IData } from "../interfaces";
 
-type TMeta = {
-  limit: number;
-  page: number;
-  total: number;
-  totalPage: number;
-};
-
-type TData<T> = {
-  statusCode: number;
-  success: boolean;
-  message?: string;
-  meta?: TMeta;
-  data: T;
-};
-
-const sendResponse = <T>(res: Response, data: TData<T>) => {
-  res.status(data?.statusCode).json({
+const sendResponse = <T>(res: Response, data: IData<T>) => {
+  res.status(data.statusCode).json({
     success: data.success,
     statusCode: data.statusCode,
     message: data.message,

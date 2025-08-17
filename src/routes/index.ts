@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { AuthRoutes } from "./Auth.routes";
 
-const globalRouter = Router();
+const router = Router();
 
 const moduleRoutes = [
   {
@@ -10,6 +10,6 @@ const moduleRoutes = [
   },
 ];
 
-moduleRoutes.forEach((route) => globalRouter.use(route.path, route.route));
+moduleRoutes.forEach((route) => router.use(route.path, route.route));
 
-export default globalRouter;
+export default router;

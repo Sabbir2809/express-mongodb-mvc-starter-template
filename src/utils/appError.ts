@@ -60,3 +60,10 @@ export class RateLimitError extends AppError {
     super(message, 429);
   }
 }
+
+// Conflict Error: 409 for duplicate or conflicting resources
+export class ConflictError extends AppError {
+  constructor(message = "Conflict! Resource already exists.", details?: any) {
+    super(message, 409, true, details);
+  }
+}

@@ -9,11 +9,11 @@ import { jwtUtils } from "../utils/jwtUtils";
 const authGuard = (...requiredRoles: string[]) => {
   return catchAsync(async (req: Request, res: Response, next: NextFunction) => {
     // headers token
-    const token = req.headers.authorization;
+    const authHeader = req.headers.authorization;
+    const token = authHeader?.split(" ")[1];
+
     if (!token) {
-      throw new AuthError(
-        "Authorization Token is Required! Please Register or Login."
-      );
+      throw new AuthError("Authorization token is required! Please Login.");
     }
 
     // check if the token is valid
