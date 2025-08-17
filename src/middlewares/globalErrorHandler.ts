@@ -20,10 +20,9 @@ const globalErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
 
   // Handle Zod validation errors
   if (err instanceof ZodError) {
-    const formattedErrors = err.errors.map((e) => ({
-      path: e.path.join("."),
-      message: e.message,
-    }));
+    const formattedErrors = err.issues
+      .map((item) => `${item.path.join(".")} - ${item.message}`)
+      .join(", ");
 
     res.status(400).json({
       status: false,
